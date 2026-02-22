@@ -1,9 +1,55 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
+import { useFormStatus } from "react-dom";
 import Navbar from "@/components/Navbar";
-import { Mail, MessageSquare, Send, Globe, Star } from "lucide-react";
+import { Mail, MessageSquare, Send, Globe, Star, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { sendContactMessage, ContactFormState } from "./actions";
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+
+    return (
+        <button
+            type="submit"
+            disabled={pending}
+            className="w-full bg-accent text-background font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform shadow-xl shadow-accent/20 disabled:opacity-70 disabled:hover:scale-100"
+        >
+            {pending ? (
+                <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span className="uppercase tracking-widest text-sm text-background">Sending Message...</span>
+                </>
+            ) : (
+                <>
+                    <Send size={18} />
+                    <span className="uppercase tracking-widest text-sm text-background">Send Message</span>
+                </>
+            )}
+        </button>
+    );
+}
 
 export default function ConnectPage() {
+    const [state, setState] = useState<ContactFormState | null>(null);
+    const [isSuccess, setIsSuccess] = useState(false);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    async function handleAction(formData: FormData) {
+        // Reset state
+        setState(null);
+
+        const result = await sendContactMessage(null, formData);
+        setState(result);
+
+        if (result.success) {
+            setIsSuccess(true);
+            formRef.current?.reset();
+            // Optional: hide success message after some time
+            // setTimeout(() => setIsSuccess(false), 8000);
+        }
+    }
+
     return (
         <main className="min-h-screen bg-background">
             <Navbar />
@@ -52,66 +98,95 @@ export default function ConnectPage() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <a href="mailto:lineage@theyorubaway.com" className="p-8 rounded-3xl bg-foreground/[0.02] border border-accent/5 hover:border-accent/20 transition-all group">
-                            <Mail className="mb-4 text-accent/40 group-hover:text-accent transition-colors" size={24} />
-                            <h3 className="font-serif font-bold mb-2">Electronic Mail</h3>
-                            <p className="text-sm text-foreground/40">Direct inquiries to the archives.</p>
-                        </a>
-                        <a href="#" className="p-8 rounded-3xl bg-foreground/[0.02] border border-accent/5 hover:border-accent/20 transition-all group">
-                            <MessageSquare className="mb-4 text-accent/40 group-hover:text-accent transition-colors" size={24} />
-                            <h3 className="font-serif font-bold mb-2">The Oracle Feed</h3>
-                            <p className="text-sm text-foreground/40">Real-time un-teachings on X.</p>
-                        </a>
-                    </div>
                 </div>
 
                 {/* Right Side: Form */}
-                <div className="glass-card p-10 rounded-[2.5rem] bg-foreground/[0.01] border-accent/10">
-                    <form className="space-y-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">Your Name / Lineage</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter name..."
-                                    className="w-full bg-background/50 border border-accent/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors"
-                                />
+                <div className="glass-card p-10 rounded-[2.5rem] bg-foreground/[0.01] border-accent/10 relative">
+                    {isSuccess ? (
+                        <div className="py-20 flex flex-col items-center text-center space-y-6 animate-in fade-in zoom-in duration-500">
+                            <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center text-accent">
+                                <CheckCircle2 size={40} />
                             </div>
-                            <div className="space-y-2">
-                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">Return Signal (Email)</label>
-                                <input
-                                    type="email"
-                                    placeholder="your@email.com"
-                                    className="w-full bg-background/50 border border-accent/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors"
-                                />
+                            <h2 className="text-3xl font-serif font-bold italic">Message Received</h2>
+                            <p className="text-foreground/60 max-w-sm">
+                                Your message has been received. We will respond as soon as possible.
+                            </p>
+                            <button
+                                onClick={() => setIsSuccess(false)}
+                                className="text-accent text-sm font-bold uppercase tracking-widest hover:underline"
+                            >
+                                Send another message
+                            </button>
+                        </div>
+                    ) : (
+                        <form ref={formRef} action={handleAction} className="space-y-8">
+                            {/* Honeypot Field */}
+                            <input type="text" name="honeypot" className="hidden" aria-hidden="true" />
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">Your Name / Lineage</label>
+                                    <input
+                                        name="name"
+                                        type="text"
+                                        placeholder="Enter name..."
+                                        defaultValue={state?.data?.name}
+                                        className={`w-full bg-background/50 border ${state?.fieldErrors?.name ? 'border-red-400/50' : 'border-accent/10'} rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors`}
+                                        required
+                                    />
+                                    {state?.fieldErrors?.name && (
+                                        <p className="text-[10px] text-red-400 font-bold uppercase tracking-widest pl-4">{state.fieldErrors.name[0]}</p>
+                                    )}
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">Return Email</label>
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        placeholder="your@email.com"
+                                        defaultValue={state?.data?.email}
+                                        className={`w-full bg-background/50 border ${state?.fieldErrors?.email ? 'border-red-400/50' : 'border-accent/10'} rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors`}
+                                        required
+                                    />
+                                    {state?.fieldErrors?.email && (
+                                        <p className="text-[10px] text-red-400 font-bold uppercase tracking-widest pl-4">{state.fieldErrors.email[0]}</p>
+                                    )}
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">The Inquiry</label>
-                            <select className="w-full bg-background/50 border border-accent/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors appearance-none">
-                                <option>General Guidance</option>
-                                <option>Academic Collaboration</option>
-                                <option>Spiritual Consultation</option>
-                                <option>Correction of Metadata</option>
-                            </select>
-                        </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">The Inquiry</label>
+                                <select
+                                    name="inquiry"
+                                    defaultValue={state?.data?.inquiry || "General Guidance"}
+                                    className="w-full bg-background/50 border border-accent/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors appearance-none"
+                                >
+                                    <option value="General Guidance">General Guidance</option>
+                                    <option value="Academic Collaboration">Academic Collaboration</option>
+                                    <option value="Spiritual Consultation">Spiritual Consultation</option>
+                                    <option value="Correction of Metadata">Correction of Metadata</option>
+                                </select>
+                            </div>
 
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">The Message</label>
-                            <textarea
-                                rows={6}
-                                placeholder="State your intent with clarity..."
-                                className="w-full bg-background/50 border border-accent/10 rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors resize-none"
-                            ></textarea>
-                        </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-foreground/40 pl-4">The Message</label>
+                                <textarea
+                                    name="message"
+                                    rows={6}
+                                    placeholder="State your intent with clarity..."
+                                    defaultValue={state?.data?.message}
+                                    className={`w-full bg-background/50 border ${state?.fieldErrors?.message ? 'border-red-400/50' : 'border-accent/10'} rounded-2xl py-4 px-6 focus:outline-none focus:border-accent/30 transition-colors resize-none`}
+                                    required
+                                ></textarea>
+                                {state?.fieldErrors?.message && (
+                                    <p className="text-[10px] text-red-400 font-bold uppercase tracking-widest pl-4">{state.fieldErrors.message[0]}</p>
+                                )}
+                            </div>
 
-                        <button className="w-full bg-accent text-background font-bold py-5 rounded-2xl flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform shadow-xl shadow-accent/20">
-                            <Send size={18} />
-                            <span className="uppercase tracking-widest text-sm">Send Signal</span>
-                        </button>
-                    </form>
+
+                            <SubmitButton />
+                        </form>
+                    )}
                 </div>
             </div>
 
