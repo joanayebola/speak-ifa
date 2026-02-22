@@ -13,8 +13,17 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Speak, Ifá | Yoruba Cosmology Blog",
+  title: "The Yorùbá Way | Yoruba Cosmology Blog",
   description: "Reclaiming Yorùbá Philosophy. Stripping away the colonial lens to meet the Òrìṣà as they truly are.",
+  icons: {
+    icon: [
+      { url: "/icon.png" },
+      { url: "/favicon.ico" },
+    ],
+    apple: [
+      { url: "/icon.png" },
+    ],
+  },
 };
 
 export default function RootLayout({

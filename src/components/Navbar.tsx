@@ -21,7 +21,7 @@ export default function Navbar() {
                     <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-background transition-transform group-hover:scale-110">
                         <Ghost size={24} />
                     </div>
-                    <span className="font-serif text-xl font-bold tracking-tight">Speak, Ifá</span>
+                    <span className="font-serif text-xl font-bold tracking-tight">The Yorùbá Way</span>
                 </Link>
 
                 {/* Desktop Nav */}

@@ -99,7 +99,7 @@ export default function OraclePage() {
 
             <footer className="py-12 border-t border-accent/10 text-center">
                 <p className="text-sm text-foreground/40 font-bold uppercase tracking-widest">
-                    © 2026 Speak, Ifá | Reclaiming the Lineage
+                    © 2026 The Yorùbá Way | Reclaiming the Lineage
                 </p>
             </footer>
         </main>

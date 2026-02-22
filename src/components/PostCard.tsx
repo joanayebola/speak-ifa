@@ -20,7 +20,7 @@ export default function PostCard({ post }: PostCardProps) {
                     />
                 ) : (
                     <div className="w-full h-full bg-accent/10 flex items-center justify-center">
-                        <span className="text-accent font-serif text-2xl font-bold italic">Speak, Ifá</span>
+                        <span className="text-accent font-serif text-2xl font-bold italic">The Yorùbá Way</span>
                     </div>
                 )}
                 <div className="absolute top-4 left-4 flex flex-col gap-2">

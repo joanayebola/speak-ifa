@@ -53,7 +53,7 @@ export default function ConnectPage() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <a href="mailto:lineage@speakifa.com" className="p-8 rounded-3xl bg-foreground/[0.02] border border-accent/5 hover:border-accent/20 transition-all group">
+                        <a href="mailto:lineage@theyorubaway.com" className="p-8 rounded-3xl bg-foreground/[0.02] border border-accent/5 hover:border-accent/20 transition-all group">
                             <Mail className="mb-4 text-accent/40 group-hover:text-accent transition-colors" size={24} />
                             <h3 className="font-serif font-bold mb-2">Electronic Mail</h3>
                             <p className="text-sm text-foreground/40">Direct inquiries to the archives.</p>
@@ -117,7 +117,7 @@ export default function ConnectPage() {
 
             <footer className="py-12 border-t border-accent/10 text-center">
                 <p className="text-sm text-foreground/40 font-bold uppercase tracking-widest">
-                    © 2026 Speak, Ifá | Reclaiming the Lineage
+                    © 2026 The Yorùbá Way | Reclaiming the Lineage
                 </p>
             </footer>
         </main>

@@ -1,10 +1,10 @@
-# Speak, Ifá — Reclaiming the Lineage
+# The Yorùbá Way — Reclaiming the Lineage
 
 A premium, decolonial digital repository dedicated to the restoration and preservation of Yorùbá cosmology. Grounded in the ancient **Odù Ifá**, this project translates ancestral logic into actionable modern wisdom, stripping away colonial caricatures to reveal the mathematical laws of the universe.
 
 ## 🏺 The Vision
 
-In a world filled with "Victorian interpretation," **Speak, Ifá** serves as a sacred archive. We meet the Òrìṣà not as folklore or myth, but as living DNA—the original blueprint for a life of character (*Ìwà*) and power (*Aṣẹ*).
+In a world filled with "Victorian interpretation," **The Yorùbá Way** serves as a sacred archive. We meet the Òrìṣà not as folklore or myth, but as living DNA—the original blueprint for a life of character (*Ìwà*) and power (*Aṣẹ*).
 
 ## 🛠 Features
 

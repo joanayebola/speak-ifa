@@ -30,7 +30,7 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <p className="text-lg text-foreground/60 max-w-3xl mx-auto mt-8 font-bold uppercase tracking-widest">
-                        'Speak, Ifá' is the moment we stop translating and start listening.
+                        'The Yorùbá Way' is the moment we stop translating and start listening.
                     </p>
                 </section>
 
@@ -38,7 +38,7 @@ export default function AboutPage() {
                 <section className="mb-32">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div className="prose prose-lg prose-serif text-foreground/70">
-                            <h2 className="text-3xl font-serif font-bold text-foreground mb-6 italic">Why 'Speak, Ifá'?</h2>
+                            <h2 className="text-3xl font-serif font-bold text-foreground mb-6 italic">Why 'The Yorùbá Way'?</h2>
                             <p>
                                 <strong>The Un-Teaching:</strong> We aren't just learning; we are un-learning. We are stripping away the labels of "devil," "superstition," and "primitive" to reveal a sophisticated, mathematical, and ethical system of existence.
                             </p>
@@ -102,7 +102,7 @@ export default function AboutPage() {
 
             <footer className="py-12 border-t border-accent/10 text-center">
                 <p className="text-sm text-foreground/40 font-bold uppercase tracking-widest">
-                    © 2026 Speak, Ifá | Reclaiming the Lineage
+                    © 2026 The Yorùbá Way | Reclaiming the Lineage
                 </p>
             </footer>
         </main>
