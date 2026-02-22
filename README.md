@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Speak, Ifá — Reclaiming the Lineage
 
-## Getting Started
+A premium, decolonial digital repository dedicated to the restoration and preservation of Yorùbá cosmology. Grounded in the ancient **Odù Ifá**, this project translates ancestral logic into actionable modern wisdom, stripping away colonial caricatures to reveal the mathematical laws of the universe.
 
-First, run the development server:
+## 🏺 The Vision
+
+In a world filled with "Victorian interpretation," **Speak, Ifá** serves as a sacred archive. We meet the Òrìṣà not as folklore or myth, but as living DNA—the original blueprint for a life of character (*Ìwà*) and power (*Aṣẹ*).
+
+## 🛠 Features
+
+- **Decolonial Archives**: Deep-dive articles on Eṣù, Àjẹ́, and Orí, restored to their original philosophical contexts.
+- **Cosmological Glossary**: A dynamic, educational reference for foundational Yorùbá metaphysical terms.
+- **Robust Search**: Diacritic-insensitive matching that respects the tonal complexity of the Yorùbá language.
+- **Premium Aesthetics**: A luxury, glassmorphic UI designed to reflect the sophistication of the lineage.
+- **Sacred Connection**: A dedicated "Connect" portal governed by the "Protocol of Engagement."
+
+## 🚀 Technical Stack
+
+- **Core**: Next.js 15+ (App Router)
+- **Styling**: Vanilla CSS with TailwindCSS utilities
+- **Typography**: Playfair Display (Serif) & Inter (Sans)
+- **Icons**: Lucide React
+- **Dynamics**: Framer Motion & CSS Micro-animations
+
+## 📖 Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the lineage speak.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/app`: Application routes including the decolonial about page and the oracle archives.
+- `src/components`: Premium UI components (Hero, BlogGrid, Glass cards).
+- `src/data`: The living core of the project; `mock-data.ts` and `post-content.tsx`.
+- `public`: Visual assets and the custom "Crossroads" favicon.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**"Kò sí Òrìṣà tí í dáni í gbè lẹ́yìn Orí ẹni."**  
+*(No Òrìṣà can bless a person without the consent of their own Orí.)*
