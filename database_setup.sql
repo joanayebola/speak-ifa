@@ -1,0 +1,2 @@
+-- Database Setup for Yorùbá Cosmology
+-- This file contains the schema for the project.
